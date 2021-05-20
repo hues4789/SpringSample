@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns;sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+<title>管理者画面</title>
+</head>
+<body>
+    <strong sec:authorize="isAuthenticated()">認証済み</strong>
+    <strong sec:authorize="!isAuthenticated()">未認証</strong>
+    <span th:text="${#authentication.principal.authorities}">authorities</span>
+    <div class="container">
+        <h1 class="mb-5">管理者画面</h1>
+        <table>
+            <thead> 
+                <tr>
+                    <th><ID/th>
+                    <th>名前</th>
+                    <th>パスワード</th>
+                </tr>
+            </thead>　
+            <tbody>
+                <tr th:each="employee:${userlist}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.name}"></td>
+                    <td th:text="${employee.password}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="admin.html" th:href="@{/admin}">管理者画面へ</a>
+    </div>
+    <script src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

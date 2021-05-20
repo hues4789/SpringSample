@@ -11,13 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MenuController {
+public class AdminController {
     @Autowired
     UserService userService;
 
         //メニュー画面への遷移
-        @GetMapping("/menu")
-        String index() {
-            return "menu";
+        @GetMapping("/admin")
+        String index(Model model) {
+            List<Employee>userlist = userService.searchAll();
+            model.addAttribute("userlist",userlist);
+            return "admin";
         }
 }
