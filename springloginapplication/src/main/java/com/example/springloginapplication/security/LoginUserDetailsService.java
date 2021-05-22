@@ -25,10 +25,7 @@ public class LoginUserDetailsService implements UserDetailsService{
             throw new UsernameNotFoundException("Wrong email or password");
         }
 
-        //ログインユーザー権限を設定
-        String role = "ROLE_ADMIN";
-
-        return new LoginUserDetails(employee, role);
+        return new LoginUserDetails(employee);
     }
     
 }
